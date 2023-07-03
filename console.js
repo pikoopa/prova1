@@ -28,11 +28,11 @@ function setH2ColorsToGreen() {
 
 //funzioni creazione tabella dinamica
 
-
+//commento
 function generateData(){
-      const array = new XMLHttpRequest();
-          array.open("GET", "https://648e30d42de8d0ea11e89dc1.mockapi.io/getUserData", true);
-          array.responseType = "text";
+    const array = new XMLHttpRequest();
+        array.open("GET", "https://648e30d42de8d0ea11e89dc1.mockapi.io/getUserData", true);
+
     const obj = JSON.parse(array);
     return obj;
 }
