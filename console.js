@@ -24,7 +24,7 @@ function setH2ColorsToGreen() {
         names[i].style.color = pippo;
     }
 }
-// fine funzioni cambia colorede
+// fine funzioni cambia coloredew
 
 //funzioni creazione tabella dinamica
 
