@@ -1,3 +1,4 @@
+// GG: I added a new comment to test git pull
 //funzioni cambia colore delle scritte
 document.addEventListener("DOMContentLoaded", addOnClickFunction);
 
