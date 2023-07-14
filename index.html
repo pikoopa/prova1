@@ -8,7 +8,7 @@
     </head>
     <body bgcolor="grey">
 
-        <button onclick="generateDataXML()"> crea tabella dinamica</button>
+        <button onclick="generateDataXML()"> crea tabella dinamica </button>
 
         <h1 class="name">cambiacolore</h1>
         <button id="btnChangeColor"> Cambia colore h1</button>
@@ -74,11 +74,12 @@
                 <li style="font-size: 20px; color:black">sono un punto</li>
                 <li style="font-size: 20px; color:black">sono un punto</li>
             </ul>  
-            <br>
-            <select>
-                <option>I am view number 1</option>
-                <option>I am view number 2</option>
-            </select>
+        <br>
+        <select id = "allView" onchange="getOptionView()">
+            <option value = "0">seleziona la view</option>
+            <option value = "1" >click for generate all Name and Number Phone</option>
+            <option value = "2">click for generate all Surname and Number ID</option>
+        </select>
         <script src="console.js"></script> 
     </body>
 </html>

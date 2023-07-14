@@ -47,8 +47,8 @@ function setH2ColorsToGreen() {
 //   })  
 // }
 
-
-async function generateDataXML() {
+// call data with XMLHttpRequest()
+/*async function generateDataXML() {
   var url = new XMLHttpRequest();
   url.open("GET", "https://648e30d42de8d0ea11e89dc1.mockapi.io/getUserData", true);
   url.onreadystatechange = function () {
@@ -58,7 +58,27 @@ async function generateDataXML() {
     }
   };
   url.send();
-}
+}*/
+
+// call data with fetch and await
+/*async function generateDataXML(){
+  const response = await fetch("https://648e30d42de8d0ea11e89dc1.mockapi.io/getUserData");
+  const movies = await response.text();
+  const obj = JSON.parse(movies);
+  generateTable(obj);
+}*/
+
+// call data with fetch without await
+function generateDataXML(){
+    let promise = fetch("https://648e30d42de8d0ea11e89dc1.mockapi.io/getUserData");
+    promise.then(async function(response) {
+        let textPromise = response.text();
+        textPromise.then(function(txt) {
+           const obj = JSON.parse(txt);
+           generateTable(obj);
+        });
+    });
+};
 
 
 function generateData() {
@@ -72,6 +92,7 @@ function generateTable(dataTable) {
   // creates a <table> element and a <tbody> element
   const tbl = document.createElement("table");
   const tblBody = document.createElement("tbody");
+  const br = document.createElement("br","br");
 
   // creating all cells
   for (let i = 0; i < dataTable.length; i++) {
@@ -95,7 +116,7 @@ function generateTable(dataTable) {
     // add the row to the end of the table body
     tblBody.appendChild(row);
   }
-
+  document.body.append(br);
   // put the <tbody> in the <table>
   tbl.appendChild(tblBody);
   // appends <table> into <body>
@@ -104,6 +125,7 @@ function generateTable(dataTable) {
   tbl.setAttribute("border", "2");
 }
 
+// tabella tipo
 /* function generateTable() {
     // creates a <table> element and a <tbody> element
     const tbl = document.createElement("table");
@@ -135,3 +157,106 @@ function generateTable(dataTable) {
     // sets the border attribute of tbl to '2'
     tbl.setAttribute("border", "2");
   } */
+function getOptionView(){
+  let value = document.getElementById('allView').value;
+    generateDataView(value);
+};
+
+function generateDataView(value){
+  let promise = fetch("https://648e30d42de8d0ea11e89dc1.mockapi.io/getUserData");
+  promise.then(async function(response) {
+      let textPromise = response.text();
+      textPromise.then(function(txt) {
+        const obj = JSON.parse(txt);
+        if (value == "1"){
+         generateViewNameAndPhone(obj);
+        }
+          else if(value == "2"){
+            generateViewSurnameAndId(obj);
+          };
+      });
+  });       
+};
+
+function generateViewNameAndPhone(dataTable) {
+
+    // creates a <table> element and a <tbody> element
+    const tbl = document.createElement("table");
+    const tblBody = document.createElement("tbody");
+    const br = document.createElement("br","br");
+  
+    // creating all cells
+    for (let i = 0; i < dataTable.length; i++) {
+      // creates a table row
+      const singleName = dataTable[i].name;
+      const singlePhone = dataTable[i].phone;
+      const row = document.createElement("tr");
+  
+      // Loop that creates the names columns
+      for (let j = 0; j < 1; j++) {
+        // Create a <td> element and a text node, make the text
+        // node the contents of the <td>, and put the <td> at
+        // the end of the table row
+          const cell1 = document.createElement("td");
+          const cellTextName = document.createTextNode(singleName);
+          cell1.appendChild(cellTextName);
+          row.appendChild(cell1);
+          const cell2 = document.createElement("td");
+          const cellTextPhone = document.createTextNode(singlePhone);
+          cell2.appendChild(cellTextPhone);
+          row.appendChild(cell2);
+      }
+  
+      // add the row to the end of the table body
+      tblBody.appendChild(row);
+    }
+  
+    document.body.append(br);
+    // put the <tbody> in the <table>
+    tbl.appendChild(tblBody);
+    // appends <table> into <body>
+    document.body.appendChild(tbl);
+    // sets the border attribute of tbl to '2'
+    tbl.setAttribute("border", "2");
+}
+
+function generateViewSurnameAndId(dataTable) {
+
+  // creates a <table> element and a <tbody> element
+  const tbl = document.createElement("table");
+  const tblBody = document.createElement("tbody");
+  const br = document.createElement("br","br");
+
+  // creating all cells
+  for (let i = 0; i < dataTable.length; i++) {
+    // creates a table row
+    const singleSurname = dataTable[i].surname;
+    const singleId = dataTable[i].id;
+    const row = document.createElement("tr");
+
+    // Loop that creates the names columns
+    for (let j = 0; j < 1; j++) {
+      // Create a <td> element and a text node, make the text
+      // node the contents of the <td>, and put the <td> at
+      // the end of the table row
+        const cell1 = document.createElement("td");
+        const cellTextName = document.createTextNode(singleSurname);
+        cell1.appendChild(cellTextName);
+        row.appendChild(cell1);
+        const cell2 = document.createElement("td");
+        const cellTextPhone = document.createTextNode(singleId);
+        cell2.appendChild(cellTextPhone);
+        row.appendChild(cell2);
+    }
+
+    // add the row to the end of the table body
+    tblBody.appendChild(row);
+  }
+  document.body.append(br);
+  // put the <tbody> in the <table>
+  tbl.appendChild(tblBody);
+  // appends <table> into <body>
+  document.body.appendChild(tbl);
+  // sets the border attribute of tbl to '2'
+  tbl.setAttribute("border", "2");
+}
