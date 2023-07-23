@@ -1,23 +1,13 @@
 table {
-    border-collapse:collapse
-}
-td, th {
-    border:3px solid black;
-    padding:20px;
+    border-collapse: collapse
 }
 
+td,
+th {
+    border: 3px solid black;
+    padding: 20px;
+}
 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
+.b-2 {
+    border: 2px;
+}

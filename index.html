@@ -75,11 +75,18 @@
                 <li style="font-size: 20px; color:black">sono un punto</li>
             </ul>  
         <br>
+        <input type="checkbox" name="value1" id="value1">
+        <label for="value1">name</label>
+        <input type="checkbox" name="value2" id="value2">
+        <label for="value2">surname</label>
         <select id = "allView" onchange="getOptionView()">
-            <option value = "0">seleziona la view</option>
-            <option value = "1" >click for generate all Name and Number Phone</option>
-            <option value = "2">click for generate all Surname and Number ID</option>
+            <option value="0">seleziona la view</option>
+            <option value="name,phonepippo">click for generate all Name and Number Phone</option>
+            <option value="surname,id">click for generate all Surname and Number ID</option>
+            <option value="surname,name,id">click for generate all Surnames, Names and Number ID</option>
+            <option value="surname">click for generate all Surname</option>
         </select>
+        <div id="tableContainer"></div>
         <script src="console.js"></script> 
     </body>
 </html>
